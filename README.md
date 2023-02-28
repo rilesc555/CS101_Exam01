@@ -2,6 +2,6 @@
 
 ### Please complete the information below
 
-## Your Name: 
+## Your Name: Riley Connors
 
-## Your UMKC Email: 
+## Your UMKC Email: rpczdb@umsystem.edu
