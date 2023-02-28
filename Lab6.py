@@ -21,25 +21,64 @@
   
 ################################ 
 import string
+
 def Encrypt(string_text, int_key) -> str:
     '''Caesar-encrypts string using specified key.'''
+    encrypted = ''
+    string_text = string_text.lower()
+    for letter in string_text:
+        if letter in string.ascii_lowercase:
+            letter = int(string.ascii_lowercase.find(letter))
+            letter += int_key
+            if letter > 25:
+                letter -= 26
+            letter = string.ascii_lowercase[letter]
+        
+        encrypted += letter
 
+    return encrypted.upper()
+    
 
 def Decrypt(string_text, int_key) -> str:
     ''' Decrypts Caesar-encrypted string with specified key. '''
+    decrypted = Encrypt(string_text, 26-int_key)
+    return decrypted.upper()
 
 
-
-def Get_input()->str:
-    '''Interacts with user. Returns one of: '1', '2', '3', '4'.'''
-
+def Get_input():
+    '''Interacts with user. Returns one of: '1', '2', '3'.'''
+    while True:
+        user_input = input('Enter your selection ==> ')
+        if user_input in ['1', '2']:
+            return int(user_input)
+        elif user_input == 'Q':
+            return 3
+        else:
+            print('Invalid selection')
 
 def Print_menu():
-  '''Prints menu. No user interaction. '''
-
+    '''Prints menu. No user interaction. '''
+    print('MAIN MENU')
+    print('1) Encode a string')
+    print('2) Decode a string')
+    print('Q) Quit')
   
 def main(): 
-
+    Print_menu()
+    answer = Get_input()
+    while answer != 3:
+        if answer == 1:
+            secret = input('\nEnter (brief) text to encrypt: ')
+            key = int(input('Enter the number to shift letters by: '))
+            print(f'Encrypted: {Encrypt(secret, key)}')
+        elif answer == 2:
+            secret = input('\nEnter (brief) text to decrypt: ')
+            key = int(input('Enter the number to shift letters by: '))
+            print(f'Decrypted: {Decrypt(secret, key)}')
+        print()
+        Print_menu()
+        answer = Get_input()
+    
       
       
 # our entire program: 
